@@ -4,7 +4,7 @@
 #include <conio.h>
 #include <string.h>
 
-
+//hhhhhhhhhhhhhhhhhhhhhhhhh
 
 void remove_conta(FILE *arquivo, int numero_conta)
  { 

@@ -12,23 +12,23 @@ void remove_conta(FILE *arquivo, int numero_conta)
    fun funcionario;
    cp conta_poupanca; // declara uma variavel para armazenar as contas lidas do arquivo
    cc conta_corrente; 
-   int encontrado = 0; // Vari·vel para indicar se a conta foi encontrada
+   int encontrado = 0; // Vari√°vel para indicar se a conta foi encontrada
 
    if(arquivo != NULL)
    {
-    // Procura em contas poupanÁa
-    fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o inÌcio  
-    while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+    // Procura em contas poupan√ßa
+    fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o in√≠cio  
+    while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
         {
-           if (tipo_conta == 'P') // Conta PoupanÁa
+           if (tipo_conta == 'P') // Conta Poupan√ßa
               { 
-                  if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // LÍ cada conta poupanÁa do arquivo enquanto fread n„o tiver problema ou chegar no fim do arquivo
+                  if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // L√™ cada conta poupan√ßa do arquivo enquanto fread n√£o tiver problema ou chegar no fim do arquivo
       	            { 
-                       if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0) // Verifica se o n˙mero da conta È o mesmo e se a conta ainda n„o foi excluida
+                       if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0) // Verifica se o n√∫mero da conta √© o mesmo e se a conta ainda n√£o foi excluida
 	    	              {  	
-                            conta_poupanca.excluido = 1; // Marca a conta como excluÌda
+                            conta_poupanca.excluido = 1; // Marca a conta como exclu√≠da
             
-		                    fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+		                    fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                             fwrite(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo); // Escreve a conta marcada como excluida no arquivo           
 			   
 			                encontrado = 1; // Indica que a conta foi encontrada
@@ -42,13 +42,13 @@ void remove_conta(FILE *arquivo, int numero_conta)
             // Procura em contas correntes    
            else if (tipo_conta == 'C') // Conta Corrente
              {
-                if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // LÍ cada conta corrente do arquivo enquanto fread retornar 1
+                if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // L√™ cada conta corrente do arquivo enquanto fread retornar 1
 	              {				   
-                     if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0) // Verifica se o n˙mero da conta È o mesmo e se a conta ainda n„o foi excluida
+                     if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0) // Verifica se o n√∫mero da conta √© o mesmo e se a conta ainda n√£o foi excluida
 		                {      
-			               conta_corrente.excluido = 1; // Marca a conta como excluÌda
+			               conta_corrente.excluido = 1; // Marca a conta como exclu√≠da
               
-			               fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+			               fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                            fwrite(&conta_corrente, sizeof(conta_corrente), 1, arquivo); // Escreve a conta marcada como excluida no arquivo
              
 			               encontrado = 1; // Indica que a conta foi encontrada
@@ -62,14 +62,14 @@ void remove_conta(FILE *arquivo, int numero_conta)
              
            else if (tipo_conta == 'F')
             {
-              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                 {                   	                                                    
 				   encontrado = 0;
 			    }	      
 		    }
         }
         
-        if(encontrado == 0) // Se a conta n„o foi encontrada	       
+        if(encontrado == 0) // Se a conta n√£o foi encontrada	       
         printf("\n\nConta nao encontrada\n"); 
    }
    else
@@ -85,9 +85,9 @@ int insere_funcionario(FILE *arquivo, fun funcionario)
 {
     char tipo_conta = 'F';
 	
-	   if (arquivo != NULL) // verifica se o arquivo existe e executa a funÁ„o
+	   if (arquivo != NULL) // verifica se o arquivo existe e executa a fun√ß√£o
 	     {
-	        fseek(arquivo, 0L, SEEK_END); // Move o ponteiro do arquivo para o inÌcio.
+	        fseek(arquivo, 0L, SEEK_END); // Move o ponteiro do arquivo para o in√≠cio.
             funcionario.excluido = 0;	  		  
 		   
 		    if (fwrite(&tipo_conta, sizeof(tipo_conta), 1, arquivo) && fwrite(&funcionario, sizeof(funcionario), 1, arquivo))
@@ -106,7 +106,7 @@ int Insere_cp(FILE *arquivo, cp conta)
     if (arquivo != NULL) 
     {
         fseek(arquivo, 0L, SEEK_END); // Move o ponteiro do arquivo para o final
-        conta.excluido = 0; // Define a conta como n„o excluida
+        conta.excluido = 0; // Define a conta como n√£o excluida
 
         if (fwrite(&tipo_conta, sizeof(tipo_conta), 1, arquivo) && fwrite(&conta, sizeof(conta), 1, arquivo)) // Escreve o tipo da conta e a conta no arquivo     
         return 1; // Retorna 1 se a escrita foi bem-sucedida
@@ -125,7 +125,7 @@ int Insere_cc(FILE *arquivo, cc conta)
     if (arquivo != NULL) 
     {
         fseek(arquivo, 0L, SEEK_END); // Move o ponteiro do arquivo para o final
-        conta.excluido = 0; // Define a conta como n„o excluida
+        conta.excluido = 0; // Define a conta como n√£o excluida
 
         if (fwrite(&tipo_conta, sizeof(tipo_conta), 1, arquivo) &&  fwrite(&conta, sizeof(conta), 1, arquivo)) // Escreve o tipo da conta e a conta no arquivo     
         return 1; // Retorna 1 se a escrita foi bem-sucedida
@@ -146,12 +146,12 @@ if(arquivo != NULL)
    { 
         fseek(arquivo, 0L, SEEK_SET); // move o ponteiro do arquivo para o inicio	
     
-        while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+        while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
 		  { 
             if (tipo_conta == 'F') 
-			   { // Tipo Funcion·rio
-                  long pos = ftell(arquivo); // Salva a posiÁ„o atual do ponteiro
-                  if (fread(&funcionario, sizeof(fun), 1, arquivo)) // LÍ a estrutura do funcion·rio
+			   { // Tipo Funcion√°rio
+                  long pos = ftell(arquivo); // Salva a posi√ß√£o atual do ponteiro
+                  if (fread(&funcionario, sizeof(fun), 1, arquivo)) // L√™ a estrutura do funcion√°rio
 				     { 
                         if (funcionario.codigo == codigo)
 						   {
@@ -195,7 +195,7 @@ if(arquivo != NULL)
                               fgets(funcionario.estado, sizeof(funcionario.estado), stdin);
                               funcionario.estado[strcspn(funcionario.estado, "\n")] = '\0';	
 
-                               // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+                               // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                               fseek(arquivo, pos, SEEK_SET);
                               fwrite(&funcionario, sizeof(fun), 1, arquivo); // Escreve a conta com os dados alterados                            
 
@@ -208,7 +208,7 @@ if(arquivo != NULL)
                }
             }
 
-        if (encontrado == 0) // Se a conta n„o foi encontrada
+        if (encontrado == 0) // Se a conta n√£o foi encontrada
 		   { 	       
             printf("\nFuncionario nao encontrado\n");
            }   
@@ -230,16 +230,16 @@ void altera_cliente(FILE *arquivo, int numero_conta)
 	
 	if(arquivo != NULL)
      {
-	  //procura em conta poupanÁa
-	  fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o inÌcio  
+	  //procura em conta poupan√ßa
+	  fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o in√≠cio  
       
-	   while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+	   while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
         {
-            if (tipo_conta == 'P') // Conta PoupanÁa
+            if (tipo_conta == 'P') // Conta Poupan√ßa
             {
-	           if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // LÍ cada conta poupanÁa do arquivo enquanto fread n„o tiver problema ou chegar no fim do arquivo
+	           if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // L√™ cada conta poupan√ßa do arquivo enquanto fread n√£o tiver problema ou chegar no fim do arquivo
              	{ 
-                    if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0) // Verifica se o n˙mero da conta È o mesmo e se a conta ainda n„o foi excluida
+                    if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0) // Verifica se o n√∫mero da conta √© o mesmo e se a conta ainda n√£o foi excluida
 	    	           {  	
                           system("cls");
                           printf("\nconta encontrada.");
@@ -272,7 +272,7 @@ void altera_cliente(FILE *arquivo, int numero_conta)
 			              fgets(conta_poupanca.estado, sizeof(conta_poupanca.estado), stdin);
 			              conta_poupanca.estado[strcspn(conta_poupanca.estado, "\n")] = '\0';
                
-		                  fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+		                  fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                           fwrite(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo); // Escreve a conta com os dados alterados         
 			   
 			              encontrado = 1; // Indica que a conta foi encontrada
@@ -286,9 +286,9 @@ void altera_cliente(FILE *arquivo, int numero_conta)
         //procura em conta corrente
 	   else if (tipo_conta == 'C') // Conta Corrente
            {
-              if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // LÍ cada conta poupanÁa do arquivo enquanto fread n„o tiver problema ou chegar no fim do arquivo
+              if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // L√™ cada conta poupan√ßa do arquivo enquanto fread n√£o tiver problema ou chegar no fim do arquivo
 	            { 
-                    if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0) // Verifica se o n˙mero da conta È o mesmo e se a conta ainda n„o foi excluida
+                    if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0) // Verifica se o n√∫mero da conta √© o mesmo e se a conta ainda n√£o foi excluida
 	    	           {  	
                           system("cls");
                           printf("\nconta encontrada.");
@@ -321,7 +321,7 @@ void altera_cliente(FILE *arquivo, int numero_conta)
 			              fgets(conta_corrente.estado, sizeof(conta_corrente.estado), stdin);
 			              conta_corrente.estado[strcspn(conta_corrente.estado, "\n")] = '\0';
                
-		                  fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+		                  fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                           fwrite(&conta_corrente, sizeof(conta_corrente), 1, arquivo); // Escreve a conta com os dados alterados         
 			   
 			              encontrado = 1; // Indica que a conta foi encontrada
@@ -334,7 +334,7 @@ void altera_cliente(FILE *arquivo, int numero_conta)
            
         else if (tipo_conta == 'F')
             {
-              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                 {                   	                                                    
 				   encontrado = 0;
 			    }
@@ -342,7 +342,7 @@ void altera_cliente(FILE *arquivo, int numero_conta)
 		    }
        }	    
 
-       if(encontrado == 0) // Se a conta n„o foi encontrada	       
+       if(encontrado == 0) // Se a conta n√£o foi encontrada	       
        printf("\n\nConta nao encontrada\n");        
     }   
     else
@@ -362,16 +362,16 @@ void altera_conta(FILE *arquivo, int numero_conta)
 	
    if(arquivo != NULL)
      {
-    // Procura em contas poupanÁa
-    fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o inÌcio  
+    // Procura em contas poupan√ßa
+    fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o in√≠cio  
      
-	while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+	while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
         {
-           if (tipo_conta == 'P') // Conta PoupanÁa
+           if (tipo_conta == 'P') // Conta Poupan√ßa
              {
-                if(fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // LÍ cada conta poupanÁa do arquivo enquanto fread n„o tiver problema ou chegar no fim do arquivo
+                if(fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // L√™ cada conta poupan√ßa do arquivo enquanto fread n√£o tiver problema ou chegar no fim do arquivo
 	              { 
-                     if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0) // Verifica se o n˙mero da conta È o mesmo e se a conta ainda n„o foi excluida
+                     if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0) // Verifica se o n√∫mero da conta √© o mesmo e se a conta ainda n√£o foi excluida
 	    	           {  	
                           system("cls");
                           printf("\nconta encontrada.");
@@ -388,7 +388,7 @@ void altera_conta(FILE *arquivo, int numero_conta)
 			              fgets(conta_poupanca.vencimento, sizeof(conta_poupanca.vencimento), stdin);
 			              conta_poupanca.vencimento[strcspn(conta_poupanca.vencimento, "\n")] = '\0';
                
-		                  fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+		                  fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                           fwrite(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo); // Escreve a conta com os dados alterados         
 			   
 			              encontrado = 1; // Indica que a conta foi encontrada
@@ -401,9 +401,9 @@ void altera_conta(FILE *arquivo, int numero_conta)
        
           else if (tipo_conta == 'C') // Conta Corrente
             {
-               if(fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // LÍ cada conta poupanÁa do arquivo enquanto fread n„o tiver problema ou chegar no fim do arquivo
+               if(fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // L√™ cada conta poupan√ßa do arquivo enquanto fread n√£o tiver problema ou chegar no fim do arquivo
                	  { 
-                    if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0) // Verifica se o n˙mero da conta È o mesmo e se a conta ainda n„o foi excluida
+                    if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0) // Verifica se o n√∫mero da conta √© o mesmo e se a conta ainda n√£o foi excluida
 	              	  {  	
                         system("cls");
                         printf("\nconta encontrada.");
@@ -420,7 +420,7 @@ void altera_conta(FILE *arquivo, int numero_conta)
 			            fgets(conta_corrente.vencimento, sizeof(conta_corrente.vencimento), stdin);
 			            conta_corrente.vencimento[strcspn(conta_corrente.vencimento, "\n")] = '\0';
                
-		                fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+		                fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                         fwrite(&conta_corrente, sizeof(conta_corrente), 1, arquivo); // Escreve a conta com os dados alterados         
 			   
 			            encontrado = 1; // Indica que a conta foi encontrada
@@ -433,7 +433,7 @@ void altera_conta(FILE *arquivo, int numero_conta)
             
           else if (tipo_conta == 'F')
             {
-              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                 {                   	                                                    
 				   encontrado = 0;
 			    }
@@ -441,7 +441,7 @@ void altera_conta(FILE *arquivo, int numero_conta)
 		    }
         }    
       
-	   if(encontrado == 0) // Se a conta n„o foi encontrada	       
+	   if(encontrado == 0) // Se a conta n√£o foi encontrada	       
        printf("\n\nConta nao encontrada\n"); 
    }  
    else
@@ -461,14 +461,14 @@ void consulta_conta(FILE *arquivo, int numero_conta)
 
     if (arquivo != NULL)
     {
-        fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o inÌcio
+        fseek(arquivo, 0L, SEEK_SET); // Move o ponteiro do arquivo para o in√≠cio
         
 		// Loop para ler todo o arquivo
-        while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+        while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
         {
-            if (tipo_conta == 'P') // Conta PoupanÁa
+            if (tipo_conta == 'P') // Conta Poupan√ßa
             {
-                if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // LÍ a estrutura da conta poupanÁa
+                if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // L√™ a estrutura da conta poupan√ßa
                 {
                     if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0)
                     {
@@ -487,7 +487,7 @@ void consulta_conta(FILE *arquivo, int numero_conta)
             
 			else if (tipo_conta == 'C') // Conta Corrente
             {
-                if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // LÍ a estrutura da conta corrente
+                if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // L√™ a estrutura da conta corrente
                 {
                     if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0)
                     {
@@ -506,7 +506,7 @@ void consulta_conta(FILE *arquivo, int numero_conta)
             
 			else if (tipo_conta == 'F')
             {
-              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                 {                   	                                                    
 				   encontrado = 0;
 			    }
@@ -515,7 +515,7 @@ void consulta_conta(FILE *arquivo, int numero_conta)
 
         }
 
-        if (encontrado == 0) // Se a conta n„o foi encontrada
+        if (encontrado == 0) // Se a conta n√£o foi encontrada
             printf("\nConta nao encontrada\n");
             system("pause");
     }
@@ -538,11 +538,11 @@ void consulta_funcionario(FILE *arquivo, int numero_conta)
 if(arquivo != NULL)
    { 
         fseek(arquivo, 0L, SEEK_SET); // move o ponteiro do arquivo para o inicio	
-        while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+        while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
 		  {
              if (tipo_conta == 'F')
 			    { 
-                     if (fread(&funcionario, sizeof(fun), 1, arquivo)) // LÍ a estrutura do funcion·rio
+                     if (fread(&funcionario, sizeof(fun), 1, arquivo)) // L√™ a estrutura do funcion√°rio
 					     { 
                              if (funcionario.codigo == numero_conta && funcionario.excluido == 0) 
 							   {
@@ -568,7 +568,7 @@ if(arquivo != NULL)
                 }
           }
 
-        if (encontrado == 0)  // Se a conta n„o foi encontrada
+        if (encontrado == 0)  // Se a conta n√£o foi encontrada
          printf("\nFuncionario nao encontrado\n");
         
         system("pause");
@@ -590,15 +590,15 @@ void consulta_cliente(FILE *arquivo, int numero_conta)
    
   if(arquivo != NULL)
    { 
-  //procura em contas poupanÁa
+  //procura em contas poupan√ßa
   fseek(arquivo, 0L, SEEK_SET); // move o ponteiro do arquivo para o inicio	
   
-  while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+  while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
      {
   
-       if (tipo_conta == 'P') // Conta PoupanÁa
+       if (tipo_conta == 'P') // Conta Poupan√ßa
          {
-            if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+            if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                {
   	              if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0)
 		            {
@@ -623,7 +623,7 @@ void consulta_cliente(FILE *arquivo, int numero_conta)
       //procura em conta corrente
         else if (tipo_conta == 'C') // Conta Corrente
           {	
-             if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+             if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
               {
   	              if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0)
 		            {
@@ -647,7 +647,7 @@ void consulta_cliente(FILE *arquivo, int numero_conta)
        
 	    else if (tipo_conta == 'F')
           {
-              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+              if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                 {                   	                                                    
 				    encontrado = 0;
 			    };
@@ -655,7 +655,7 @@ void consulta_cliente(FILE *arquivo, int numero_conta)
 		  }
 	 }
 
-      if(encontrado == 0) // Se a conta n„o foi encontrada	       
+      if(encontrado == 0) // Se a conta n√£o foi encontrada	       
       printf("\nConta nao encontrada\n");   
 	  
 	  system("pause");	
@@ -680,11 +680,11 @@ void mostrar_saldo(FILE *arquivo, int senha)
      { 
         fseek(arquivo, 0L, SEEK_SET);
         
-		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
           {
-              if (tipo_conta == 'P') // Conta PoupanÁa
+              if (tipo_conta == 'P') // Conta Poupan√ßa
                  {
-                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                         {
   	                       if (conta_poupanca.senha == senha && conta_poupanca.excluido == 0)
 		                      {
@@ -698,7 +698,7 @@ void mostrar_saldo(FILE *arquivo, int senha)
 		         
 		    else if (tipo_conta == 'C') // Conta Corrente
                {	
-                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                       {
   	                      if (conta_corrente.senha == senha && conta_corrente.excluido == 0)
 		                    {
@@ -712,14 +712,14 @@ void mostrar_saldo(FILE *arquivo, int senha)
 				
 		   else if (tipo_conta == 'F')
                {
-                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                       {                   	                                                    
 				         encontrado = 0;
 			          }	      
 		        } 						 
 		  } 
 		    
-		if(encontrado == 0) // Se a conta n„o foi encontrada	       
+		if(encontrado == 0) // Se a conta n√£o foi encontrada	       
         printf("\nConta nao encontrada\n");   
 	    
     }
@@ -744,11 +744,11 @@ void deposita_conta(FILE *arquivo, FILE *extrato, int numero_conta)
    if(arquivo != NULL)
      {  
 	    fseek(arquivo, 0L, SEEK_SET);    
-		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
           {
-              if (tipo_conta == 'P') // Conta PoupanÁa
+              if (tipo_conta == 'P') // Conta Poupan√ßa
                  {
-                    if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                    if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                         {
   	                       if (conta_poupanca.numero_conta == numero_conta && conta_poupanca.excluido == 0)
 		                      {				     
@@ -757,14 +757,14 @@ void deposita_conta(FILE *arquivo, FILE *extrato, int numero_conta)
 					            
 								conta_poupanca.saldo += deposito; 
 							   
-							    fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+							    fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                                 fwrite(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo);
 							   
 							    encontrado = 1;
 							    
 							    
 							    fseek(extrato, 0L, SEEK_END); // move o ponteiro para o final do arquivo extrato
-							    fwrite(&sinal, sizeof(sinal), 1, extrato) && fwrite(&deposito, sizeof(deposito), 1, extrato) && fwrite(&conta_poupanca.saldo, sizeof(conta_poupanca.saldo), 1, extrato);//escrevendo a operaÁ„o no extrato 
+							    fwrite(&sinal, sizeof(sinal), 1, extrato) && fwrite(&deposito, sizeof(deposito), 1, extrato) && fwrite(&conta_poupanca.saldo, sizeof(conta_poupanca.saldo), 1, extrato);//escrevendo a opera√ß√£o no extrato 
 							    						    
 							    printf("\nDeposito feito com sucesso!\n");
 		  	                    break; 
@@ -774,7 +774,7 @@ void deposita_conta(FILE *arquivo, FILE *extrato, int numero_conta)
 		         
 		    else if (tipo_conta == 'C') // Conta Corrente
                {	
-                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                       {
   	                      if (conta_corrente.numero_conta == numero_conta && conta_corrente.excluido == 0)
 		                    {	                      
@@ -783,7 +783,7 @@ void deposita_conta(FILE *arquivo, FILE *extrato, int numero_conta)
 		                     
 							  conta_corrente.saldo += deposito;
 							 	
-							  fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+							  fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                               fwrite(&conta_corrente, sizeof(conta_corrente), 1, arquivo);	
 							 	
 		                      encontrado = 1;
@@ -796,14 +796,14 @@ void deposita_conta(FILE *arquivo, FILE *extrato, int numero_conta)
 				
 		   else if (tipo_conta == 'F')
                {
-                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                       {                   	                                                    
 				         encontrado = 0;
 			          }	      
 		        } 						 
 		  } 
 		    
-		if(encontrado == 0) // Se a conta n„o foi encontrada	       
+		if(encontrado == 0) // Se a conta n√£o foi encontrada	       
         printf("\nConta nao encontrada\n");    
 	  	
 	 }
@@ -827,11 +827,11 @@ void saque(FILE *arquivo, FILE *extrato, int senha)
      { 
         fseek(arquivo, 0L, SEEK_SET);
         
-		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
           {
-              if (tipo_conta == 'P') // Conta PoupanÁa
+              if (tipo_conta == 'P') // Conta Poupan√ßa
                  {
-                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                         {
   	                       if (conta_poupanca.senha == senha && conta_poupanca.excluido == 0)
 		                      {
@@ -849,12 +849,12 @@ void saque(FILE *arquivo, FILE *extrato, int senha)
 								      {
 								 	    conta_poupanca.saldo -= saque;
 								 	   		
-										fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+										fseek(arquivo, -sizeof(conta_poupanca), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                                         fwrite(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo);
                                         
                                         
                                         fseek(extrato, 0L, SEEK_END); // move o ponteiro para o final do arquivo extrato
-							            fwrite(&sinal, sizeof(sinal), 1, extrato) && fwrite(&saque, sizeof(saque), 1, extrato) && fwrite(&conta_corrente.saldo, sizeof(conta_corrente.saldo), 1, extrato);//escrevendo a operaÁ„o no extrato 
+							            fwrite(&sinal, sizeof(sinal), 1, extrato) && fwrite(&saque, sizeof(saque), 1, extrato) && fwrite(&conta_corrente.saldo, sizeof(conta_corrente.saldo), 1, extrato);//escrevendo a opera√ß√£o no extrato 
 										
 										printf("\nSaque realizado com sucesso!\n");							 	   	
 									    encontrado = 1;
@@ -866,7 +866,7 @@ void saque(FILE *arquivo, FILE *extrato, int senha)
 		         
 		    else if (tipo_conta == 'C') // Conta Corrente
                {	
-                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                       {
   	                      if (conta_corrente.senha == senha && conta_corrente.excluido == 0)
 		                    {
@@ -884,7 +884,7 @@ void saque(FILE *arquivo, FILE *extrato, int senha)
 								      {
 								 	    conta_corrente.saldo -= saque;
 								 	   		
-										fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posiÁ„o da conta lida
+										fseek(arquivo, -sizeof(conta_corrente), SEEK_CUR); // Move o ponteiro do arquivo de volta para a posi√ß√£o da conta lida
                                         fwrite(&conta_corrente, sizeof(conta_corrente), 1, arquivo);
 										
 										printf("\nSaque realizado com sucesso!\n");							 	   	
@@ -900,14 +900,14 @@ void saque(FILE *arquivo, FILE *extrato, int senha)
 				
 		   else if (tipo_conta == 'F')
                {
-                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                       {                   	                                                    
 				         encontrado = 0;
 			          }	      
 		        } 						 
 		  } 
 		    
-		if(encontrado == 0) // Se a conta n„o foi encontrada	       
+		if(encontrado == 0) // Se a conta n√£o foi encontrada	       
         printf("\nConta nao encontrada\n");   
 	    
     }
@@ -929,11 +929,11 @@ void ver_limite(FILE *arquivo, int senha)
      { 
         fseek(arquivo, 0L, SEEK_SET);
         
-		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
           {
-              if (tipo_conta == 'P') // Conta PoupanÁa
+              if (tipo_conta == 'P') // Conta Poupan√ßa
                  {
-                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                         {
   	                       if (conta_poupanca.senha == senha && conta_poupanca.excluido == 0)
 		                      {
@@ -957,7 +957,7 @@ void ver_limite(FILE *arquivo, int senha)
 		         
 		    else if (tipo_conta == 'C') // Conta Corrente
                {	
-                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                       {
   	                      if (conta_corrente.senha == senha && conta_corrente.excluido == 0 && conta_corrente.limite > 0.0)
 		                    {
@@ -978,14 +978,14 @@ void ver_limite(FILE *arquivo, int senha)
 				
 		   else if (tipo_conta == 'F')
                {
-                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                       {                   	                                                    
 				         encontrado = 0;
 			          }	      
 		        } 						 
 		  } 
 		    
-		if(encontrado == 0) // Se a conta n„o foi encontrada	       
+		if(encontrado == 0) // Se a conta n√£o foi encontrada	       
         printf("\nConta nao encontrada\n");   
 	    
     }
@@ -1010,11 +1010,11 @@ void ver_extrato(FILE *arquivo, FILE *extrato, int senha)
      { 
         fseek(arquivo, 0L, SEEK_SET);
         
-		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // LÍ o tipo da conta atÈ atingir o final do arquivo
+		while (fread(&tipo_conta, sizeof(char), 1, arquivo)) // L√™ o tipo da conta at√© atingir o final do arquivo
           {
-              if (tipo_conta == 'P') // Conta PoupanÁa
+              if (tipo_conta == 'P') // Conta Poupan√ßa
                  {
-                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                     if (fread(&conta_poupanca, sizeof(conta_poupanca), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                         {
   	                       if (conta_poupanca.senha == senha && conta_poupanca.excluido == 0)
 		                      {
@@ -1035,7 +1035,7 @@ void ver_extrato(FILE *arquivo, FILE *extrato, int senha)
 		         
 		    else if (tipo_conta == 'C') // Conta Corrente
                {	
-                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo atÈ chegar ao final ou acontecer algum erro
+                   if (fread(&conta_corrente, sizeof(conta_corrente), 1, arquivo)) // le as contas do arquivo at√© chegar ao final ou acontecer algum erro
                       {
   	                      if (conta_corrente.senha == senha && conta_corrente.excluido == 0)
 		                    {
@@ -1050,14 +1050,14 @@ void ver_extrato(FILE *arquivo, FILE *extrato, int senha)
 				
 		   else if (tipo_conta == 'F')
                {
-                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // LÍ a estrutura da conta corrente
+                    if (fread(&funcionario, sizeof(funcionario), 1, arquivo)) // L√™ a estrutura da conta corrente
                       {                   	                                                    
 				         encontrado = 0;
 			          }	      
 		        } 						 
 		  } 
 		    
-		if(encontrado == 0) // Se a conta n„o foi encontrada	       
+		if(encontrado == 0) // Se a conta n√£o foi encontrada	       
         printf("\nConta nao encontrada\n");   
 	    
     }
@@ -1084,13 +1084,13 @@ float deposito = 0;
 Arquivo = fopen("banco.txt", "w+b"); // Abre o arquivo
 extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
  
-  if(Arquivo == NULL) // tenta criar outro arquivo se n„o existir um
+  if(Arquivo == NULL) // tenta criar outro arquivo se n√£o existir um
   { 
    	 Arquivo = fopen("banco.txt", "w+"); 
   }
 
 
-  if(extrato == NULL) // tenta criar outro arquivo se n„o existir um
+  if(extrato == NULL) // tenta criar outro arquivo se n√£o existir um
   { 
    	 printf("ola");
    	 system("pause");
@@ -1100,7 +1100,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 
    if(Arquivo != NULL) // Se o arquivo foi aberto ou criado
   { 
-    do //realiza o programa enquanto o usuario n„o quiser sair
+    do //realiza o programa enquanto o usuario n√£o quiser sair
     {
       system("cls");//limpa a tela
       
@@ -1160,7 +1160,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
       printf("\nCLIENTE [2]\n");
       printf("\nSAIR [3]\n");
       
-      opcao = getch(); //le a opÁ„o do usuario
+      opcao = getch(); //le a op√ß√£o do usuario
       switch(opcao)
        {
        	   case '1':
@@ -1171,9 +1171,9 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 				     
        	   	     if(senha == 1234) //se a senha for correta entra no menu do funcionario
        	   	       {           
-       	   	   	       do // realiza enquanto n„o apertar 7 para sair do programa
+       	   	   	       do // realiza enquanto n√£o apertar 7 para sair do programa
                        {
-						system("cls"); // limpa a tela e mostra as opÁıes do funcionario
+						system("cls"); // limpa a tela e mostra as op√ß√µes do funcionario
 				        printf("ABERTURA DE CONTA [1]"); 
 				        printf("\n\nENCERRAMENTO DE CONTA [2]"); 
 				        printf("\n\nCONSULTAR DADOS[3]"); 
@@ -1193,7 +1193,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 							printf("\n\nCONTA CORRENTE - CC [2]");
 							printf("\n\nVOLTAR [3]");	
 						   	
-						   	  do // realiza enquanto n„o aperta 3 para voltar
+						   	  do // realiza enquanto n√£o aperta 3 para voltar
 							   {				   	
 							      ola = getch();// le a opcao do usuario de qual tipo de conta ele quer abrir    							
 							      switch(ola)
@@ -1203,7 +1203,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 							       	  printf("\n===== ABERTURA CONTA POUPANCA =====");							       	             
 							       	  
 							       	  printf("\n\nAGENCIA: "); // mostrando o dado para ser inserido
-									  scanf("%d", &conta.agencia); // lendo as informaÁıes do usuario e armazenando na structure da conta poupanÁa
+									  scanf("%d", &conta.agencia); // lendo as informa√ß√µes do usuario e armazenando na structure da conta poupan√ßa
 									  while (getchar() != '\n'); // Limpando o Buffer para a proxima leitura
 									   
 									  printf("NUMERO DA CONTA: ");
@@ -1264,15 +1264,15 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 							  	      
 							  	      conta.saldo = 0.0; // inicializa o saldo da conta em 0
      										  
-											if (Insere_cp(Arquivo, conta))// chama a funÁ„o para gravar a conta poupanÁa no arquivo
+											if (Insere_cp(Arquivo, conta))// chama a fun√ß√£o para gravar a conta poupan√ßa no arquivo
                                             printf("\nConta poupanca aberta com sucesso\n");// mostra a mensagem se a conta foi inserida                                      
 										    
 											else
                                             printf("Erro ao abrir a conta\n");
 											
-											system("pause"); // Pausa para que o usu·rio veja a mensagem
+											system("pause"); // Pausa para que o usu√°rio veja a mensagem
                                            	
-											     ola = '3';	// forÁa a saido do loop								   
+											     ola = '3';	// for√ßa a saido do loop								   
 										         break;																	  	       
 	
 							        
@@ -1281,7 +1281,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 							       	  printf("\n===== ABERTURA CONTA CORRENTE =====");
 							       	  
 									  printf("\n\nAGENCIA: "); // mostrando o dado para ser inserido
-									  scanf("%d", &contac.agencia); // lendo as informaÁıes do usuario e armazenando na structure da conta poupanÁa
+									  scanf("%d", &contac.agencia); // lendo as informa√ß√µes do usuario e armazenando na structure da conta poupan√ßa
 									  while (getchar() != '\n'); // Limpando o Buffer para a proxima leitura
 									  
 									  printf("NUMERO DA CONTA: ");
@@ -1348,16 +1348,16 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 									  
 									  contac.saldo = 0.0; // inicializa o saldo da conta em 0
 									  							  
-										  if (Insere_cc(Arquivo, contac))// chama a funÁ„o para gravar a conta corrente no arquivo
+										  if (Insere_cc(Arquivo, contac))// chama a fun√ß√£o para gravar a conta corrente no arquivo
                                           printf("\nConta corrente aberta com sucesso.\n");// mostra a mensagem se a conta foi inserida                                      
 										  
 										  
 										  else
                                           printf("Erro ao abrir a conta.\n");    
 									  
-									      system("pause"); // Pausa para que o usu·rio veja a mensagem
+									      system("pause"); // Pausa para que o usu√°rio veja a mensagem
 									      
-                                              ola = '3';	// forÁa a saido do loop								   
+                                              ola = '3';	// for√ßa a saido do loop								   
 									          break;
 									  
 									 }							   
@@ -1418,7 +1418,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 										        while (getchar() != '\n');
 										        
 										        
-										        consulta_conta(Arquivo, numero_conta);// chama funÁ„o para consultar a conta
+										        consulta_conta(Arquivo, numero_conta);// chama fun√ß√£o para consultar a conta
 										        
 										        system("cls");
 												printf("\nCONSULTAR CONTA [1]");
@@ -1435,7 +1435,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 												 scanf("%d", &numero_conta);
 												 while (getchar() != '\n');
 												 
-												 consulta_funcionario(Arquivo, numero_conta); // chama funÁ„o consultar funcionario
+												 consulta_funcionario(Arquivo, numero_conta); // chama fun√ß√£o consultar funcionario
 												 
 												system("cls");
 												printf("\nCONSULTAR CONTA [1]");
@@ -1452,7 +1452,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 											     scanf("%d", &numero_conta);
 											     while (getchar() != '\n');
 											     
-											     consulta_cliente(Arquivo, numero_conta); // chama funÁ„o para consultar o cliente
+											     consulta_cliente(Arquivo, numero_conta); // chama fun√ß√£o para consultar o cliente
 											     
 											     system("cls");
 											     printf("\nCONSULTAR CONTA [1]");
@@ -1749,7 +1749,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 			
 			case '2':
 				
-			do //realiza o programa enquanto o usuario n„o quiser sair
+			do //realiza o programa enquanto o usuario n√£o quiser sair
             {
 			   system("cls"); //limpa a tela
 		       printf("SALDO [1]");
@@ -1767,7 +1767,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 			    	   printf("\nDigite a senha da conta do cliente: ");
 					   scanf("%d", &senha);
 					   
-					   mostrar_saldo(Arquivo, senha); // chama a funÁ„o para mostrar o saldo do cliente	
+					   mostrar_saldo(Arquivo, senha); // chama a fun√ß√£o para mostrar o saldo do cliente	
 			    	   		    	
                        system("pause");
 					   break;	
@@ -1806,7 +1806,7 @@ extrato = fopen("extrato.txt", "w+b");//Abrindo o arquivo para extrato
 					   printf("\nDigite a senha da conta do cliente: ");
 					   scanf("%d", &senha);
 					   
-					   if(senha == 12)// se a senha for igual a 12 mostra o extrato, se n„o n„o mostra
+					   if(senha == 12)// se a senha for igual a 12 mostra o extrato, se n√£o n√£o mostra
 					     {
 					        ver_extrato(Arquivo, extrato, senha);
 				         }

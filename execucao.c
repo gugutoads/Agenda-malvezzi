@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
-
-
+preinffawd
+//adwadawdwadwadawdawwd
 void remove_conta(FILE *arquivo, int numero_conta)
  { 
    char tipo_conta;

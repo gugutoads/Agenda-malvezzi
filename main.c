@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <biblioteca.h>
+#include "biblioteca.h"
 
 main()
 {
-print("ola");
+int x;	
+MenuInicial(x);
 		
 }

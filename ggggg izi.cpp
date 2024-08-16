@@ -1,4 +1,4 @@
-// Funções de Operações Bancárias
+// Funções de Operações Bancárias do primeiro semestrewsd[fkopadihgbvsdjçdkLSAHFIsdhfijvdsgf9offg
 
 void aberturaDeConta() {
     char nome[100];

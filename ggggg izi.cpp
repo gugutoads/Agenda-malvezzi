@@ -3,7 +3,7 @@
 void aberturaDeConta() {
     char nome[100];
     double saldoInicial;
-//sampaio guay
+//sampaio hetero
     printf("=== Abertura de Conta ===\n");
     printf("Digite o nome do cliente: ");
     scanf("%s", nome);

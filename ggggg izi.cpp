@@ -1,9 +1,9 @@
-// Funções de Operações Bancárias
+// FunÃ§Ãµes de OperaÃ§Ãµes BancÃ¡rias
 
 void aberturaDeConta() {
     char nome[100];
     double saldoInicial;
-
+//sampaio guay
     printf("=== Abertura de Conta ===\n");
     printf("Digite o nome do cliente: ");
     scanf("%s", nome);
@@ -46,8 +46,8 @@ void consultarDados() {
         if (strcmp(conta.dados.nome, nomeParaBuscar) == 0) {
             printf("Dados da conta:\n");
             printf("Nome: %s\n", conta.dados.nome);
-            printf("Agência: %s\n", conta.conta.agencia);
-            printf("Número da Conta: %s\n", conta.conta.numero_da_conta);
+            printf("AgÃªncia: %s\n", conta.conta.agencia);
+            printf("NÃºmero da Conta: %s\n", conta.conta.numero_da_conta);
             printf("Saldo: %.2lf\n", conta.conta.saldo);
             encontrado = 1;
             break;
@@ -57,7 +57,7 @@ void consultarDados() {
     fclose(arquivo);
 
     if (!encontrado) {
-        printf("Conta não encontrada.\n");
+        printf("Conta nÃ£o encontrada.\n");
     }
 }
 
@@ -99,7 +99,7 @@ void encerramentoDeConta() {
     if (encontrado) {
         printf("Conta encerrada com sucesso.\n");
     } else {
-        printf("Conta não encontrada. Retornando ao menu...\n");
+        printf("Conta nÃ£o encontrada. Retornando ao menu...\n");
     }
 }
 
@@ -132,7 +132,7 @@ void alterarDados() {
     if (encontrado) {
         printf("Dados alterados com sucesso.\n");
     } else {
-        printf("Conta não encontrada.\n");
+        printf("Conta nÃ£o encontrada.\n");
     }
 }
 
@@ -144,11 +144,11 @@ void cadastroDeFuncionarios() {
 
     Funcionario novoFuncionario;
 
-    printf("Digite o nome do funcionário: ");
+    printf("Digite o nome do funcionÃ¡rio: ");
     scanf("%s", novoFuncionario.nome);
-    printf("Digite o cargo do funcionário: ");
+    printf("Digite o cargo do funcionÃ¡rio: ");
     scanf("%s", novoFuncionario.cargo);
-    printf("Digite o ID do funcionário: ");
+    printf("Digite o ID do funcionÃ¡rio: ");
     scanf("%d", &novoFuncionario.id);
 
     FILE *arquivo = fopen("funcionarios.bin", "ab");
@@ -160,7 +160,7 @@ void cadastroDeFuncionarios() {
     fwrite(&novoFuncionario, sizeof(Funcionario), 1, arquivo);
     fclose(arquivo);
 
-    printf("Funcionário cadastrado com sucesso.\n");
+    printf("FuncionÃ¡rio cadastrado com sucesso.\n");
 }
 
 void gerarRelatorios() {
@@ -171,11 +171,11 @@ void gerarRelatorios() {
         return;
     }
 
-    printf("=== Relatório de Contas ===\n");
+    printf("=== RelatÃ³rio de Contas ===\n");
     while (lerContaPoupanca(&conta, arquivo)) {
         printf("Nome: %s\n", conta.dados.nome);
-        printf("Agência: %s\n", conta.conta.agencia);
-        printf("Número da Conta: %s\n", conta.conta.numero_da_conta);
+        printf("AgÃªncia: %s\n", conta.conta.agencia);
+        printf("NÃºmero da Conta: %s\n", conta.conta.numero_da_conta);
         printf("Saldo: %.2lf\n", conta.conta.saldo);
         printf("\n");
     }

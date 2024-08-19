@@ -8,7 +8,10 @@ int main() {
     cria_lista(&li);
 
     printf("Lista inicializada com tamanho: %d\n", li.qntd);
-    return 0;
+
+    int x = tamanho_lista(&li);
+    
+
 }
 
 

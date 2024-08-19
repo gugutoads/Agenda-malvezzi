@@ -17,4 +17,4 @@ struct contato{
 // Função para inicializar a lista
 void cria_lista(Lista *li);
 
-
+int tamanho_lista(Lista* li);

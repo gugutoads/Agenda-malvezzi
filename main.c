@@ -1,9 +1,7 @@
-
+#include "agenda.h"
 #include "agenda.c"
 
-
-
 int main(){
-	lista *li;
+	Lista *li;
 	
 }

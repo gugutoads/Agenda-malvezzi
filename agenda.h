@@ -1,20 +1,22 @@
-#define MAX 3 // Tamanho máximo da lista
+#define MAX_CONTATOS 3 // Tamanho máximo da lista de contatos
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
 
-struct Lista{
-    int elementos[MAX]; // Array para armazenar os elementos
-    int qntd;             // Número atual de elementos na lista
-};
+typedef struct {
+    char nome[50];
+    char numero[15];
+    char email[50];
+} Contato;
 
-struct contato{
-   char nome[50];
-   int	telefone;
-   char email[50];
-};
+typedef struct {
+    Contato contatos[MAX_CONTATOS];
+    int tamanho; // Número atual de contatos
+} Agenda;
 
-// Função para inicializar a lista
-void cria_lista(Lista *li);
-
-int tamanho_lista(Lista* li);
+// Funções para manipulação da agenda
+void inicializarAgenda(Agenda *agenda);
+int inserirContato(Agenda *agenda, const char *nome, const char *numero, const char *email);
+int removerContato(Agenda *agenda, const char *nome);
+Contato* procurarContato(Agenda *agenda, const char *nome);
+void listarContatos(Agenda *agenda);

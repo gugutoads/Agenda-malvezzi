@@ -4,9 +4,12 @@
 // Outras operações podem ser implementadas aqui
 
 int main() {
-    Lista minhaLista;
-    inicializarLista(&minhaLista);
+    Lista li;
+    cria_lista(&li);
 
-    printf("Lista inicializada com tamanho: %d\n", minhaLista.tamanho);
+    printf("Lista inicializada com tamanho: %d\n", li.qntd);
     return 0;
 }
+
+
+

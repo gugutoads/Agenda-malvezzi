@@ -1,6 +1,10 @@
 #include "agenda.h"
 
 // Função para inicializar a lista
-void inicializarLista(Lista *lista) {
-    lista->tamanho = 1; // Define o tamanho inicial como 0
+
+void cria_lista(Lista *li) {
+    li->qntd = 0; // Define o tamanho inicial como 0
 }
+
+
+

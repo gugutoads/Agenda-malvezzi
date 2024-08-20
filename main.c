@@ -9,12 +9,13 @@ void exibirMenu() { //função para exibir o menu
     printf("3. Procurar Contato\n");
     printf("4. Listar Contatos\n");
     printf("5. Sair\n");
-    printf("\nEscolha uma opção: ");
+    printf("\nEscolha uma opcao: ");
 }
 
 int main() {
     Agenda minhaAgenda; //criando uma variavel do tipo agenda para manipular a lista
     inicializarAgenda(&minhaAgenda); //iniciando a agenda
+    char nome[50], numero[15], email[50]; //variaveis para armazenar os dados
     int opcao;
     
     do {
@@ -25,7 +26,6 @@ int main() {
 
         switch (opcao) {
             case 1: {
-                char nome[50], numero[15], email[50]; //variaveis para armazenar os dados
                 printf("Digite o nome: ");
                 fgets(nome, sizeof(nome), stdin); //le o nome
                 nome[strcspn(nome, "\n")] = 0; // Remove a nova linha
@@ -47,7 +47,6 @@ int main() {
                 break;
             }
             case 2: 
-                char nome[50]; //variavel para armazenar a opcao do usuario
                 printf("Digite o nome do contato a ser removido: ");
                 fgets(nome, sizeof(nome), stdin); // le a opcao do usuario
                 nome[strcspn(nome, "\n")] = 0; // Remove a nova linha
@@ -62,8 +61,7 @@ int main() {
                 }
                 break;
             
-            case 3: {
-                char nome[50];
+            case 3: {                
                 printf("Digite o nome do contato a ser procurado: ");
                 fgets(nome, sizeof(nome), stdin);//le a opcao do usuario
                 nome[strcspn(nome, "\n")] = 0; // Remove a nova linha

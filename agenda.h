@@ -10,8 +10,8 @@ typedef struct {
 } Contato;
 
 typedef struct {
-    Contato contatos[MAX];
-    int tamanho; // Número atual de contatos
+    Contato contatos[MAX]; //lista para armazenar os contatos
+    int tamanho; // Número atual de contatos e localizador de posição
 } Agenda;
 
 // Funções para manipulação da agenda

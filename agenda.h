@@ -18,5 +18,5 @@ typedef struct {
 void inicializarAgenda(Agenda *agenda);
 int inserirContato(Agenda *agenda, const char *nome, const char *numero, const char *email);
 int removerContato(Agenda *agenda, const char *nome);
-Contato* procurarContato(Agenda *agenda, const char *nome);
+void procurarContato(Agenda *agenda, const char *nome);
 void listarContatos(Agenda *agenda);

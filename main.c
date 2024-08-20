@@ -66,18 +66,12 @@ int main() {
                 fgets(nome, sizeof(nome), stdin);
                 nome[strcspn(nome, "\n")] = 0; // Remove a nova linha
 
-                Contato *contato = procurarContato(&minhaAgenda, nome);
-                if (contato) {
-                    printf("Contato encontrado: Nome: %s, Número: %s, Email: %s\n", 
-                           contato->nome, contato->numero, contato->email);
-                           system("pause");
-                } 
-				else {
-                    printf("Contato não encontrado!\n");
-                    system("pause");
-                }
+                procurarContato(&minhaAgenda, nome);
+
+                system("pause");
+                
                 break;
-            }
+               }
             case 4:
                 listarContatos(&minhaAgenda);
                 system("pause");

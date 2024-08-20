@@ -35,15 +35,22 @@ int removerContato(Agenda *agenda, const char *nome) {
 }
 
 // Função para procurar um contato
-Contato* procurarContato(Agenda *agenda, const char *nome) {
+void procurarContato(Agenda *agenda, const char *nome) {
+    int encontrado = 0; // Flag para verificar se o contato foi encontrado
     for (int i = 0; i < agenda->tamanho; i++) {
         if (strcmp(agenda->contatos[i].nome, nome) == 0) {
-            return &agenda->contatos[i]; // Retorna o contato encontrado
+            printf("Contato encontrado: Nome: %s, Número: %s, Email: %s\n", 
+                   agenda->contatos[i].nome, 
+                   agenda->contatos[i].numero, 
+                   agenda->contatos[i].email);
+            encontrado = 1; // Define a flag como encontrada
+            break; // Sai do loop após encontrar
         }
     }
-    return NULL; // Contato não encontrado
+    if (!encontrado) { // Se não foi encontrado
+        printf("Contato não encontrado!\n");
+    }
 }
-
 // Função para listar todos os contatos
 void listarContatos(Agenda *agenda) {
     if (agenda->tamanho == 0) {

@@ -1,4 +1,4 @@
-#define MAX_CONTATOS 3 // Tamanho máximo da lista de contatos
+#define MAX 3 // Tamanho máximo da lista de contatos
 #include <stdio.h>
 #include <string.h>
 #include <conio.h>
@@ -10,7 +10,7 @@ typedef struct {
 } Contato;
 
 typedef struct {
-    Contato contatos[MAX_CONTATOS];
+    Contato contatos[MAX];
     int tamanho; // Número atual de contatos
 } Agenda;
 

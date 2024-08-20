@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "agenda.h"
 
-void exibirMenu() {
+void exibirMenu() { //função para exibir o menu
     printf("\n===MENU:===\n");
     printf("\n1. Inserir Contato\n");
     printf("2. Remover Contato\n");
@@ -13,75 +13,77 @@ void exibirMenu() {
 }
 
 int main() {
-    Agenda minhaAgenda;
-    inicializarAgenda(&minhaAgenda);
+    Agenda minhaAgenda; //criando uma variavel do tipo agenda para manipular a lista
+    inicializarAgenda(&minhaAgenda); //iniciando a agenda
     int opcao;
     
     do {
     	system("cls"); //limpar a tela
-        exibirMenu();
-        scanf("%d", &opcao);
+        exibirMenu(); //exibindo o menu
+        scanf("%d", &opcao); // le a opção do usuário
         getchar(); // Limpa o buffer do teclado
 
         switch (opcao) {
             case 1: {
-                char nome[50], numero[15], email[50];
+                char nome[50], numero[15], email[50]; //variaveis para armazenar os dados
                 printf("Digite o nome: ");
-                fgets(nome, sizeof(nome), stdin);
+                fgets(nome, sizeof(nome), stdin); //le o nome
                 nome[strcspn(nome, "\n")] = 0; // Remove a nova linha
                 printf("Digite o número: ");
-                fgets(numero, sizeof(numero), stdin);
+                fgets(numero, sizeof(numero), stdin); //le o numero
                 numero[strcspn(numero, "\n")] = 0; // Remove a nova linha
                 printf("Digite o email: ");
-                fgets(email, sizeof(email), stdin);
+                fgets(email, sizeof(email), stdin);//le o email
                 email[strcspn(email, "\n")] = 0; // Remove a nova linha
 
-                if (inserirContato(&minhaAgenda, nome, numero, email)) {
+                if (inserirContato(&minhaAgenda, nome, numero, email)) { //se a inserção retornar valor positivo
                     printf("Contato inserido com sucesso!\n");
                     system("pause");
-                } else {
-                    printf("Agenda cheia! Não foi possível inserir o contato.\n");
+                } 
+				else {// se a função retornar valor negativo
+                    printf("Não foi possível inserir o contato.\n");
                     system("pause");
-                }
+                 }
                 break;
             }
-            case 2: {
-                char nome[50];
+            case 2: 
+                char nome[50]; //variavel para armazenar a opcao do usuario
                 printf("Digite o nome do contato a ser removido: ");
-                fgets(nome, sizeof(nome), stdin);
+                fgets(nome, sizeof(nome), stdin); // le a opcao do usuario
                 nome[strcspn(nome, "\n")] = 0; // Remove a nova linha
 
-                if (removerContato(&minhaAgenda, nome)) {
+                if (removerContato(&minhaAgenda, nome)) { //se a função retornar valor positivo
                     printf("Contato removido com sucesso!\n");
                     system("pause");
-                } else {
+                } 
+				else {//se a função retornar valor negativo
                     printf("Contato não encontrado!\n");
                     system("pause");
                 }
                 break;
-            }
+            
             case 3: {
                 char nome[50];
                 printf("Digite o nome do contato a ser procurado: ");
-                fgets(nome, sizeof(nome), stdin);
+                fgets(nome, sizeof(nome), stdin);//le a opcao do usuario
                 nome[strcspn(nome, "\n")] = 0; // Remove a nova linha
 
-                procurarContato(&minhaAgenda, nome);
+                procurarContato(&minhaAgenda, nome); // função para procurar contato
 
                 system("pause");
                 
                 break;
                }
             case 4:
-                listarContatos(&minhaAgenda);
+                listarContatos(&minhaAgenda); //função para listar os contatos
                 system("pause");
                 break;
-            case 5:
-                break;
-            default:
-                printf("Opção inválida! Tente novamente.\n");
+
+                
+            default:;
         }
-    } while (opcao != 5);
+    } 
+	while (opcao != 5);
 
     return 0;
 }
